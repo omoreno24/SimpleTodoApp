@@ -1,1 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.css";
+@import "./variables.less";
+
+body{
+    background-color: @background-color;
+}
+.navbar{
+    height: @navbar-height;
+    &.main{
+        margin-bottom: 10px ;
+    }
+}
+.todo-list{
+    background: #f7f7f7;
+    padding: 10px;
+    border-radius: 7px;
+}
