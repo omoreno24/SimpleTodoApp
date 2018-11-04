@@ -1,0 +1,13 @@
+<div class="card mb-10">
+  <div class="card-header">
+    {{title}}
+  </div>
+  <ul class="list-group">
+    <li class="list-group-item" *ngIf='!hasTask'>
+      <h5>No {{title | lowercase}} tasks.</h5>
+    </li>
+    <div *ngFor="let task of tasks">
+      <todo-item [task]='task' (onDelete)="deleteTask($event)" (onSave)="updateTask($event)"></todo-item>
+    </div>
+  </ul>
+</div>

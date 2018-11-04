@@ -1,0 +1,43 @@
+<li class="list-group-item list-group-item-action d-flex align-content-center" [ngClass]="{'done list-group-item-light':task.completed, 'list-group-item-danger': task.isTimed && task.elapsedTime < 0 && !task.completed}">
+  <div class="custom-control custom-checkbox custom-control-inline align-self-center" (click)="toggleComplete()">
+    <input type="checkbox" class="custom-control-input" [(checked)]='task.completed'>
+    <label class="custom-control-label" for="customCheck1">&nbsp;</label>
+  </div>
+  <div class="d-flex w-100 justify-content-between">
+    <div class="flex-fill">
+      <small [hidden]='editMode'>{{task.modified | date: 'short'}}</small>
+      <h6 class="mb-1 description" *ngIf="!editMode">
+        {{task.description}}
+      </h6>
+      <div class="col-md-11">
+        <div class="row">
+          <task-editor class="mt-10 input-group" [task]="task" [hideControls]="true" (onSave)="onEdit()" [hidden]="!editMode" #editor></task-editor>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex justify-content-between">
+      <div class="d-flex align-items-center mr-2" *ngIf="task.isTimed" style="font-weight: bold;">
+        <span [hidden]="editMode" [ngClass]="{'text-danger': (task.elapsedTime < 0) && !task.completed}" *ngIf="task.elapsedTime >= 60 || task.elapsedTime < -59">
+          <ng-container *ngIf="(task.elapsedTime < 300) && (task.elapsedTime > - 300)">
+            {{((task.elapsedTime) / 60) | number: '0.0-0'}}m
+          </ng-container>
+          <ng-container *ngIf="(task.elapsedTime > 300) || (task.elapsedTime < - 300)">
+            {{task.elapsedTime > 0 ?'+':'-'}} 5m
+          </ng-container>
+        </span>
+        <span [ngClass]="{'text-warning': task.elapsedTime >=0, 'text-danger': task.elapsedTime < 0}" *ngIf="!task.completed && (task.elapsedTime < 60) && (task.elapsedTime > -60)">
+          {{task.elapsedTime | number: '0.0-0'}}s
+        </span>
+      </div>
+      <small *ngIf="task.completed" class="align-self-center mr-2">{{task.dueDate | date: 'shortTime'}}</small>
+      <div class="btn-group d-flex align-items-center" role="group" aria-label="Basic example">
+        <button type="button" class="btn" [ngClass]="{'btn-secondary':!editMode,'btn-primary':editMode}" *ngIf="!task.completed" (click)="!editMode? editTask($event): saveTask()">
+          <i class="fas" [ngClass]="{'fa-edit': !editMode, 'fa-save':editMode}"></i>
+        </button>
+        <button type="button" class="btn" [ngClass]="{'btn-danger' : !editMode, 'btn-warning': editMode}" (click)='!editMode ? deleteTask($event) : cancelEdit()'>
+          <i class="fas" [ngClass]="{'fa-trash' : !editMode, 'fa-times-circle' : editMode}"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</li>

@@ -1,0 +1,15 @@
+<div class="input-group">
+  <input [(ngModel)]="task.description" (keydown)="handleKeyboardSubmit($event)" type="text" class="form-control" aria-label="Type something that you need to do..." placeholder="Type something that you need to do..." #DI>
+  <div class="input-group-append">
+    <div class="input-group-text" [hidden]="task.isTimed">
+      Timed Task
+    </div>
+    <div class="input-group-text">
+      <input type="checkbox" aria-label="timed task" [(ngModel)]="task.isTimed">
+    </div>
+    <input class="w-1" type="number" placeholder="minutes" [hidden]="!task.isTimed" [(ngModel)]="task.duration" (keydown)="handleKeyboardSubmit($event)">
+    <button *ngIf="!hideControls" class="btn" [ngClass]="{'btn-primary': isValid, 'btn-secondary': !isValid}" type="button" id="button-addon2" (click)="save()" [disabled]="!isValid">
+      <i class='fa fa-plus'></i>
+    </button> 
+  </div>
+</div>

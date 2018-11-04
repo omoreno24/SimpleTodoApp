@@ -1,0 +1,18 @@
+<nav class="navbar navbar-dark bg-dark main mb-10 shadow-sm">
+  <a class="navbar-brand" href="#"> 
+    <h6 class="mb-0">{{today | date: 'LLL d'}}</h6>
+    <h1 class="mb-0">{{today | date: 'EEEE'}}</h1>
+  </a>
+  <task-editor class="input-group" (onSave)="addTask($event)"></task-editor>
+</nav>
+<div class="container-fluid">
+  <div class="row justify-content-md-center">
+    <div class="col-md-10">
+      <div class="row">
+        <div class="col-md-12 todo-list">
+         <todo-list [tasks]="pendingTasks" title="Pending"></todo-list>
+         <todo-list [tasks]="completedTasks" title="Completed"></todo-list>
+      </div>  
+    </div>
+  </div>
+</div>
