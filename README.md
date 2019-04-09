@@ -1,7 +1,15 @@
 # TodoApp
+Simple todo app build with Typescript, Bootstrap and Angular7.
+Feactures:
+* Timed Task.
+* Responsive Design.
+* RealTime Update.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.3.
 
+# Screenshots
+![alt text](https://raw.githubusercontent.com/omoreno24/SimpleTodoApp/master/src/assets/screenshot-1.png)
+![alt text](https://raw.githubusercontent.com/omoreno24/SimpleTodoApp/master/src/assets/screenshot-2.png)
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
